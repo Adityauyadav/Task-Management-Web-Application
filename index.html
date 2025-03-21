@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Task Management</title>
+    <link rel="stylesheet" type="text/css" href="style.css">
+</head>
+<body>
+    <h1>Task Management</h1>
+    <div class="container">
+        <form id="taskForm">
+            <label for="id">Task ID:</label>
+            <input type="number" id="id" name="id" required>
+            <label for="task_name">Task Name:</label>
+            <input type="text" id="task_name" name="task_name" required>
+            <button type="submit">Add Task</button>
+        </form>
+        <table>
+            <tr>
+                <th>ID</th>
+                <th>Task Name</th>
+                <th>Action</th>
+            </tr>
+            <tbody id="taskList"></tbody>
+        </table>
+    </div>
+    <script>
+        document.addEventListener("DOMContentLoaded", loadTasks);
+        document.getElementById("taskForm").addEventListener("submit", addTask);
+
+        function loadTasks() {
+            let tasks = JSON.parse(localStorage.getItem("tasks")) || [];
+            let taskList = document.getElementById("taskList");
+            taskList.innerHTML = "";
+            tasks.forEach(task => {
+                let row = `<tr>
+                    <td>${task.id}</td>
+                    <td>${task.name}</td>
+                    <td>
+                        <button onclick="editTask(${task.id})">Edit</button>
+                        <button onclick="deleteTask(${task.id})">Delete</button>
+                    </td>
+                </tr>`;
+                taskList.innerHTML += row;
+            });
+        }
+
+        function addTask(event) {
+            event.preventDefault();
+            let id = document.getElementById("id").value;
+            let task_name = document.getElementById("task_name").value;
+            let tasks = JSON.parse(localStorage.getItem("tasks")) || [];
+            tasks.push({ id, name: task_name });
+            localStorage.setItem("tasks", JSON.stringify(tasks));
+            loadTasks();
+            document.getElementById("taskForm").reset();
+        }
+
+        function deleteTask(id) {
+            let tasks = JSON.parse(localStorage.getItem("tasks")) || [];
+            tasks = tasks.filter(task => task.id != id);
+            localStorage.setItem("tasks", JSON.stringify(tasks));
+            loadTasks();
+        }
+
+        function editTask(id) {
+            let tasks = JSON.parse(localStorage.getItem("tasks")) || [];
+            let task = tasks.find(task => task.id == id);
+            if (task) {
+                let newTaskName = prompt("Enter new task name:", task.name);
+                if (newTaskName) {
+                    task.name = newTaskName;
+                    localStorage.setItem("tasks", JSON.stringify(tasks));
+                    loadTasks();
+                }
+            }
+        }
+    </script>
+</body>
+</html>
