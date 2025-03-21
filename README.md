@@ -16,27 +16,24 @@ CREATE TABLE task_list (
     id INT PRIMARY KEY,
     task_name VARCHAR(255) NOT NULL
 );
-```
-```
 
-### Steps to Run:
-1. Start **Apache** and **MySQL** in XAMPP.
-2. Copy the PHP files (`add_task.php`, `delete_task.php`, `display_tasks.php`, `edit_task.php`, and `task_management.php`) into the XAMPP `htdocs` folder.
-3. Open `http://localhost/task_management.php` in your browser.
-4. Use the form to add, edit, and delete tasks.
+Steps to Run:
+	1.	Start Apache and MySQL in XAMPP.
+	2.	Copy the PHP files (add_task.php, delete_task.php, display_tasks.php, edit_task.php, and task_management.php) into the XAMPP htdocs folder.
+	3.	Open your browser and go to: [text](http://localhost/task_management.php)
+    4. 	Use the form to add, edit, and delete tasks.
 
----
 
-## Running the HTML & JavaScript Version
+Running the HTML & JavaScript Version
 
-### Steps:
-1. Open `index.html` (the JavaScript version of the task manager) in any modern web browser.
-2. Tasks will be stored in `localStorage`, so no backend or database is needed.
-3. Use the interface to add, edit, and delete tasks.
+Steps:
+	1.	Open the index.html file in any modern web browser.
+	2.	The tasks will be stored in localStorage, meaning no backend or database is required.
+	3.	Use the interface to add, edit, and delete tasks.
 
 ---
 
-## Differences Between Versions
+Differences Between Versions
 
 | Feature            | PHP + MySQL Version | HTML + JS Version |
 |--------------------|--------------------|------------------|
@@ -48,6 +45,6 @@ You can choose which version suits your needs. The **PHP version** is useful for
 
 ---
 
-### Author:
-This project was originally written in PHP and later converted to plain JavaScript and HTML. 🚀
+Author:
+This project was originally written in PHP and later converted to plain JavaScript and HTML.
 
